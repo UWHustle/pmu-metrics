@@ -8,12 +8,11 @@
 
 /***********************************************************
 * Flag to enable collection of hardware metrics.
-* Make sure the PMU registers have been initialized, and the
-* rdpmc instruction is enabled for user-level programs
-* before initializing this flag.
+* Make sure the setup script has been run successfully
+* before enabling this flag.
 ***********************************************************/
 
-#define _COLLECT_PMU_METRICS_ 0
+#define _COLLECT_PMU_METRICS_ 1
 
 typedef struct Metrics {
     struct timespec startTime;
