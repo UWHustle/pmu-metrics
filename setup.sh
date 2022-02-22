@@ -2,6 +2,12 @@
 
 # The core to program
 CORE=1
+while getopts c: flag
+do
+	case "${flag}" in
+		c) CORE=${OPTARG};;
+	esac
+done
 
 # Enable rdpmc instruction at user-level
 echo 2 > _rdpmc.txt
