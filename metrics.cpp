@@ -62,7 +62,7 @@ unsigned long rdpmc_llc_cache_misses() {
 // This gives L2 cache references
 // These are basically L1 misses
 unsigned long rdpmc_l2_cache_refs() {
-#if _COLLECT_PMU_METRICS_
+#if _COLLECT_PMU_METRICS_ && _IS_SKYLAKE_
     // L2_RQSTS.REFERENCES
     // mask:event = 0x43ef24 in 0x187
     unsigned long a, d, c;
@@ -76,7 +76,7 @@ unsigned long rdpmc_l2_cache_refs() {
 
 // This gives L2 cache misses
 unsigned long rdpmc_l2_cache_misses() {
-#if _COLLECT_PMU_METRICS_
+#if _COLLECT_PMU_METRICS_ && _IS_SKYLAKE_
     // L2_RQSTS.MISS
     // mask:event = 0x433f24 in 0x188
     unsigned long a, d, c;

@@ -13,6 +13,7 @@
 ***********************************************************/
 
 #define _COLLECT_PMU_METRICS_ 1
+#define _IS_SKYLAKE_ 1
 
 typedef struct Metrics {
     struct timespec startTime;

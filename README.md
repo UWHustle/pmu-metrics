@@ -17,7 +17,7 @@ The `setup.sh` script programs PMU registers on the logical core (specified usin
 - L2 misses
 - L1 misses
 
-The setup for L2 and L1 misses is specific to processors from the Intel Skylake architecture family (Cloudlab `c220g5` machines have compatible processors). For a different architecture family, refer to chapter 18 and 19 of the [Intel's Developer Manual Volume 3](https://www.intel.com/content/www/us/en/architecture-and-technology/64-ia-32-architectures-software-developer-system-programming-manual-325384.html) to program the PMU registers accordingly.
+The setup for L2 and L1 misses is specific to processors from the Intel Skylake architecture family (Cloudlab `c220g5` machines have compatible processors). The remaining hardware metrics are architecture agnostic. To program the PMU registers for a different architecture family, refer to chapter 18 and 19 of the [Intel's Developer Manual Volume 3](https://www.intel.com/content/www/us/en/architecture-and-technology/64-ia-32-architectures-software-developer-system-programming-manual-325384.html). Alternately, you can disable the flag `_IS_SKYLAKE_` in file `metrics.h` to skip measuring L1 and L2 cache misses. 
 
 2. After running the setup script, simply wrap the code you want to benchmark with the utility functions in this library as follows
 ```
