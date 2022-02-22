@@ -9,7 +9,7 @@ Run the setup script (requires sudo access)
 sudo ./setup.sh -c 1
 ```
 
-The `setup.sh` programs core 1 by default. You can program a different logical core by passing the `-c` flag.
+The `setup.sh` script programs core 1 by default. You can program a different logical core by passing the argument through `-c` flag.
 
 Then simply wrap the code you want to benchmark with the utility functions in this library as follows
 
@@ -27,10 +27,10 @@ printMetrics(m);
 ...
 ```
 
-**NOTE**- Make sure to pin the running process to the programmed logical core using `taskset`. If core 1 has been programmed, then
+***NOTE***- Make sure to pin the running process to the programmed logical core using `taskset`. If core 1 has been programmed, then
 
 ```
 taskset -c 1 ./a.out
 ```
 
-This benchmarking library works for single-threaded code. Multi-threaded code can lauch threads that can be scheduled on arbitrary cores which may not be programmed.
+This benchmarking library works for single-threaded code. Multi-threaded code can lauch threads that can be scheduled on arbitrary cores which may not be programmed. In such cases, a more complex approach of setting the program's CPU affinity to a subset of programmed cores, as well as collecting metrics from multiple cores will be required.
