@@ -9,12 +9,15 @@ Intel's Performance Monitoring Unit (PMU) is a convenient way to obtain hardware
 sudo ./setup.sh -c 1
 ```
 The `setup.sh` script programs PMU registers on the logical core (specified using the `-c` flag) to measure the following hardware metrics:
+
 - Time elapsed (microseconds)
 - Instructions executed
 - Number of core cycles
 - L3 misses
 - L2 misses
 - L1 misses
+
+The setup for L2 and L1 misses is specific to processors from the Intel Skylake architecture family (Cloudlab `c220g5` machines have compatible processors). For a different architecture family, refer to chapter 18 and 19 of the [Intel's Developer Manual Volume 3](https://www.intel.com/content/www/us/en/architecture-and-technology/64-ia-32-architectures-software-developer-system-programming-manual-325384.html) to program the PMU registers accordingly.
 
 2. After running the setup script, simply wrap the code you want to benchmark with the utility functions in this library as follows
 ```
