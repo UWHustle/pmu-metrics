@@ -20,6 +20,7 @@ typedef struct Metrics {
     struct timespec endTime;
     unsigned long timeElapsedus;
     unsigned long retiredInst;
+    unsigned long coreCycles;
     unsigned long l3Miss;
     unsigned long l2Miss;
     unsigned long l1Miss;
@@ -32,6 +33,8 @@ typedef struct Metrics {
 
 unsigned long getTimeDiff(struct timespec, struct  timespec);
 unsigned long rdpmc_retired_inst_all();
+unsigned long rdpmc_core_cycles();
+unsigned long rdpmc_tsc_reference_cyles();
 unsigned long rdpmc_llc_cache_misses();
 unsigned long rdpmc_l2_cache_misses();
 unsigned long rdpmc_l2_cache_refs();
