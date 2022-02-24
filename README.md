@@ -8,16 +8,23 @@ Intel's Performance Monitoring Unit (PMU) is a convenient way to obtain hardware
 ```
 sudo ./setup.sh -c 1
 ```
-The `setup.sh` script programs PMU registers on the logical core (specified using the `-c` flag) to measure the following hardware metrics:
+The `setup.sh` script programs PMU registers on the logical core specified by the `-c` flag to measure the following hardware metrics:
 
 - Time elapsed (microseconds)
 - Instructions executed
 - Number of core cycles
 - L3 misses
-- L2 misses
-- L1 misses
+- L2 misses (only for Skylake and Kaby Lake architecture families)
+- L1 misses (only for Skylake and Kaby Lake architecture families)
 
-The setup for L2 and L1 misses is specific to processors from the Intel Skylake architecture family (Cloudlab `c220g5` machines have compatible processors). The remaining hardware metrics are architecture agnostic. To program the PMU registers for a different architecture family, refer to chapter 18 and 19 of the [Intel's Developer Manual Volume 3](https://www.intel.com/content/www/us/en/architecture-and-technology/64-ia-32-architectures-software-developer-system-programming-manual-325384.html). Alternately, you can disable the flag `_IS_SKYLAKE_` in file `metrics.h` to skip measuring L1 and L2 cache misses. 
+The performance metrics for L1 and L2 cache misses are specific to the Skylake and Kaby Lake architecture families, while the rest of the metrics work across all architectures. Cloudlab `c220g5` machines have Intel Xeon 4114 Silver processors that belong to the Skylake architecture family. To check the architecture family of your processor,
+
+```
+node:~> cat /sys/devices/cpu/caps/pmu_name
+skylake
+```
+
+If your CPU belongs to a different architecture family, disable the flag `_IS_SKYLAKE_` in file `metrics.h`. To program the PMU registers for a different architecture family and for other metrics, refer to chapter 18 and 19 of the [Intel's Developer Manual Volume 3](https://www.intel.com/content/www/us/en/architecture-and-technology/64-ia-32-architectures-software-developer-system-programming-manual-325384.html). This [blogpost](https://dbdrifter.blogspot.com/2022/02/hardware-counters-for-non-intrusive.html) will serve as a guide to navigate the manual.
 
 2. After running the setup script, simply wrap the code you want to benchmark with the utility functions in this library as follows
 ```
