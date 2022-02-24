@@ -1,6 +1,6 @@
 # Fine-grained Hardware Metrics using Intel's PMU
 
-Intel's Performance Monitoring Unit (PMU) is a convenient way to obtain hardware metrics such as cache misses, core cycles, etc. in a lightweight non-intrusive manner. A useful application of PMU metrics is when one wants to benchmark a subsection of code, which is difficult to do with existing tools such as linux_perf, Vtune, etc.
+Intel's Performance Monitoring Unit (PMU) is a convenient way to obtain hardware metrics such as cache misses, core cycles, etc. in a lightweight non-intrusive manner. A useful application of PMU metrics is when one wants to benchmark a subsection of code, which is difficult to do with existing tools such as linux_perf, Vtune, etc. To better understand how to program the PMU, refer to this [blogpost](https://dbdrifter.blogspot.com/2022/02/hardware-counters-for-non-intrusive.html).
 
 ## Usage
 
