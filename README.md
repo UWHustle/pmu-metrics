@@ -6,7 +6,7 @@ Intel's Performance Monitoring Unit (PMU) is a convenient way to obtain hardware
 
 1. Run the setup script (requires sudo access)
 ```
-node:~> sudo ./setup.sh -c 1
+sudo ./setup.sh -c 1
 ```
 The `setup.sh` script programs PMU registers on the logical core specified by the `-c` flag to measure the following hardware metrics:
 
@@ -43,7 +43,7 @@ printMetrics(m);
 
 3. Make sure to pin the process to the programmed logical core using `taskset`. If core 1 has been programmed, then
 ```
-node:~> taskset -c 1 ./a.out
+taskset -c 1 ./a.out
 ```
 
 This benchmarking library works for single-threaded code. Multi-threaded code can lauch threads that can be scheduled on arbitrary cores which may not be programmed. In such cases, a more complex approach of setting the program's CPU affinity to a subset of programmed cores, as well as collecting metrics from multiple cores will be required.
