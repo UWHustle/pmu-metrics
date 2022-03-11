@@ -16,6 +16,8 @@ unsigned long _rdpmc(unsigned long pmc_id) {
 unsigned long * Metrics::pmu_ids = NULL;
 unsigned long * Metrics::event_ids = NULL;
 
+std::map<unsigned long, std::string> event_names_map_copy(event_names_map, event_names_map + num_events);
+
 Metrics::Metrics() {
     n =  3 * FIXED_CTRS_ENBL + N_PERFEVTSEL_MSR;
     metrics = (unsigned long*)malloc(sizeof(unsigned long)*n);
@@ -86,7 +88,7 @@ void printMetrics(Metrics &m) {
     std::string event_name;
     for (int i=0; i<m.n; i++) {
         event_id = m.event_ids[i];
-        event_name = event_names_map[event_id].second;
+        event_name = event_names_map_copy[event_id];
         std::cout << event_name << ": "
             << m.metrics[i]
             << std::endl;

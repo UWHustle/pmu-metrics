@@ -118,3 +118,6 @@ const event_name_pair_t event_names_map[] = {
 	event_name_pair_t(SKL_KBL_MEM_STORE_RETD, "Retired Memory Store Instructions")
 };
 
+const int num_events = sizeof(event_names_map) / sizeof(event_names_map[0]);
+
+extern std::map<unsigned long, std::string> event_names_map_copy;
