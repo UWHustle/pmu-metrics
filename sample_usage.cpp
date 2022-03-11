@@ -1,3 +1,10 @@
+/******************************************************************
+* Sample usage of the pmu-metrics library.
+* IMPORTANT: Remember to taskset to the programmed core as follows:
+
+node:~> taskset -c 1 ./benchmark.out
+*******************************************************************/
+
 #include <cstdlib>
 #include <iostream>
 #include <vector>
