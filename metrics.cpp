@@ -1,5 +1,8 @@
 #include "metrics.h"
 
+// // Populated in perf_events.h
+// std::map<int, std::string> event_names;
+
 unsigned long _rdpmc(unsigned long pmc_id) {
 #if _COLLECT_PMU_METRICS_
     unsigned long a, d;
@@ -10,19 +13,59 @@ unsigned long _rdpmc(unsigned long pmc_id) {
 #endif
 }
 
+unsigned long * Metrics::pmu_ids = NULL;
+unsigned long * Metrics::event_ids = NULL;
+
 Metrics::Metrics() {
     n =  3 * FIXED_CTRS_ENBL + N_PERFEVTSEL_MSR;
     metrics = (unsigned long*)malloc(sizeof(unsigned long)*n);
-    pmu_ids = (unsigned long*)malloc(sizeof(unsigned long)*n);
-    int idx = 0;
-    if (FIXED_CTRS_ENBL) {
-        pmu_ids[0] = (1<<30);
-        pmu_ids[1] = (1<<30) + 1;
-        pmu_ids[2] = (1<<30) + 2;
-        idx = 3;
-    }
-    for (int i=0; i<N_PERFEVTSEL_MSR; i++,idx++) {
-        pmu_ids[idx] = i;
+    if (!pmu_ids) {
+        // Initialize PMU ids
+        pmu_ids = (unsigned long*)malloc(sizeof(unsigned long)*n);
+        int idx = 0;
+        if (FIXED_CTRS_ENBL) {
+            pmu_ids[0] = (1<<30);
+            pmu_ids[1] = (1<<30) + 1;
+            pmu_ids[2] = (1<<30) + 2;
+            idx = 3;
+        }
+        for (int i=0; i<N_PERFEVTSEL_MSR; i++,idx++) {
+            pmu_ids[idx] = i;
+        }
+
+        // Initialize Event IDs
+        event_ids = (unsigned long*)malloc(sizeof(unsigned long)*n);
+        idx = 0;
+        if (FIXED_CTRS_ENBL) {
+            event_ids[0] = ARCH_INST_RETD;
+            event_ids[1] = ARCH_CORE_CYCLES;
+            event_ids[2] = ARCH_TSC_REF_CYCLES;
+            idx = 3;
+        }
+#if PERFEVTSEL0
+        event_ids[idx++] = PERFEVTSEL0;
+#endif
+#if PERFEVTSEL1
+        event_ids[idx++] = PERFEVTSEL1;
+#endif
+#if PERFEVTSEL2
+        event_ids[idx++] = PERFEVTSEL2;
+#endif
+#if PERFEVTSEL3
+        event_ids[idx++] = PERFEVTSEL3;
+#endif
+#if PERFEVTSEL4
+        event_ids[idx++] = PERFEVTSEL4;
+#endif
+#if PERFEVTSEL5
+        event_ids[idx++] = PERFEVTSEL5;
+#endif
+#if PERFEVTSEL6
+        event_ids[idx++] = PERFEVTSEL6;
+#endif
+#if PERFEVTSEL7
+        event_ids[idx++] = PERFEVTSEL7;
+#endif
     }
 }
 
@@ -38,11 +81,14 @@ void getMetricsEnd(Metrics &m) {
     }
 }
 
-// void printMetrics(Metrics &m) {
-//     std::cout << "Retired Insructions: " << m.metrics[0] << std::endl;
-//     std::cout << "Core Cycles: " << m.metrics[1] << std::endl;
-//     std::cout << "Reference Cycles: " << m.metrics[2] << std::endl;
-//     std::cout << "L3 Misses: " << m.metrics[3] << std::endl;
-//     std::cout << "L2 Misses: " << m.metrics[4] << std::endl;
-//     std::cout << "L1 Misses: " << m.metrics[5] << std::endl;    
-// }
+void printMetrics(Metrics &m) { 
+    unsigned long event_id;
+    std::string event_name;
+    for (int i=0; i<m.n; i++) {
+        event_id = m.event_ids[i];
+        event_name = event_names_map[event_id].second;
+        std::cout << event_name << ": "
+            << m.metrics[i]
+            << std::endl;
+    }
+}

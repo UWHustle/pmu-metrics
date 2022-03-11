@@ -17,7 +17,8 @@ typedef struct Metrics {
 	Metrics();
 	int n; // number of metrics being measured
     unsigned long *metrics;
-    unsigned long *pmu_ids;
+    static unsigned long *pmu_ids;
+    static unsigned long *event_ids;
 } Metrics;
 
 /***********************************************************
@@ -47,6 +48,6 @@ getMetricsEnd(m);
 void initMetrics(Metrics&);
 void getMetricsStart(Metrics&);
 void getMetricsEnd(Metrics&);
-// void printMetrics(Metrics&);
+void printMetrics(Metrics&);
 
 #endif // _METRICS_H_
