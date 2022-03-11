@@ -29,5 +29,6 @@ int main() {
 	getMetricsStart(m);
 	sort(vect.begin(), vect.end());
 	getMetricsEnd(m);
+	printMetrics(m);
 	return 0;
 }
