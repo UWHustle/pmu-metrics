@@ -14,6 +14,7 @@
 #define _COLLECT_PMU_METRICS_ 1
 
 typedef struct Metrics {
+	Metrics();
 	int n; // number of metrics being measured
     unsigned long *metrics;
     unsigned long *pmu_ids;

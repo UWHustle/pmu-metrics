@@ -10,19 +10,19 @@ unsigned long _rdpmc(unsigned long pmc_id) {
 #endif
 }
 
-void initMetrics(Metrics &m) {
-    m.n =  3 * FIXED_CTRS_ENBL + N_PERFEVTSEL_MSR;
-    m.metrics = (unsigned long*)malloc(sizeof(unsigned long)*m.n);
-    m.pmu_ids = (unsigned long*)malloc(sizeof(unsigned long)*m.n);
+Metrics::Metrics() {
+    n =  3 * FIXED_CTRS_ENBL + N_PERFEVTSEL_MSR;
+    metrics = (unsigned long*)malloc(sizeof(unsigned long)*n);
+    pmu_ids = (unsigned long*)malloc(sizeof(unsigned long)*n);
     int idx = 0;
     if (FIXED_CTRS_ENBL) {
-        m.pmu_ids[0] = (1<<30);
-        m.pmu_ids[1] = (1<<30) + 1;
-        m.pmu_ids[2] = (1<<30) + 2;
+        pmu_ids[0] = (1<<30);
+        pmu_ids[1] = (1<<30) + 1;
+        pmu_ids[2] = (1<<30) + 2;
         idx = 3;
     }
     for (int i=0; i<N_PERFEVTSEL_MSR; i++,idx++) {
-        m.pmu_ids[idx] = i;
+        pmu_ids[idx] = i;
     }
 }
 
