@@ -8,5 +8,5 @@ metrics.o: metrics.cpp metrics.h config.h perf_events.h
 	g++ -c metrics.cpp
 
 clean:
-	rm *.out
-	rm *.o
+	rm -rf *.out
+	rm -rf *.o
