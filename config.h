@@ -4,6 +4,10 @@
 * For a (non-exhaustive) list of performance events, refer
 * to file perf_events.h.
 ***********************************************************/
+
+#ifndef __CONFIG_H__
+#define __CONFIG_H__
+
 #include "perf_events.h"
 
 /*************************************************
@@ -60,3 +64,5 @@ skylake
 // #define PERFEVTSEL5	NULL
 // #define PERFEVTSEL6	NULL
 // #define PERFEVTSEL7	NULL
+
+#endif // __CONFIG_H__
