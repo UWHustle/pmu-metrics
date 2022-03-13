@@ -5,6 +5,7 @@
 #define _METRICS_H_
 
 #include "config.h"
+#include "perf_events_names.h"
 
 /***********************************************************
 * Flag to enable collection of hardware metrics.
