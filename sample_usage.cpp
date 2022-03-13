@@ -9,14 +9,24 @@ node:~> taskset -c 1 ./benchmark.out
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <time.h>
+#include <sys/time.h>
+#include <sys/types.h>
 
 #include "metrics.h"
-
-#define N 10000000 // 10M
+#include "n.h"
 
 using namespace std;
 
+unsigned long getTimeDiff(struct timespec start_time, struct timespec end_time) {
+    return (unsigned long)((end_time.tv_sec - start_time.tv_sec)*1000000 +
+        double(end_time.tv_nsec - start_time.tv_nsec)/1000);
+    return 0;
+}
+
 int main() {
+	struct timespec start_time, end_time;
+	clock_gettime(CLOCK_MONOTONIC, &start_time);
 	vector<int> vect(N);
 	Metrics m;
 
@@ -29,6 +39,7 @@ int main() {
 	getMetricsStart(m);
 	sort(vect.begin(), vect.end());
 	getMetricsEnd(m);
-	printMetrics(m);
+	clock_gettime(CLOCK_MONOTONIC, &end_time);
+	cout << getTimeDiff(start_time, end_time) << endl;
 	return 0;
 }
