@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # The core to program (option -c)
-# By default we program core 1
-CORE=1
+# By default we program core 19
+CORE=19
 while getopts c: flag
 do
 	case "${flag}" in

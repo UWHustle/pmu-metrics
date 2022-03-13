@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CORE=1
+CORE=19
 
 for N in {10000000,}
 do
