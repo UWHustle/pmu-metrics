@@ -13,3 +13,5 @@ do
 	done
 	echo "-------------"
 done
+
+git checkout -- n.h

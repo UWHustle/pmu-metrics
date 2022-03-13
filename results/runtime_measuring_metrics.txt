@@ -4,16 +4,16 @@ g++ -c sample_usage.cpp
 g++ -c metrics.cpp
 g++ -o benchmark.out sample_usage.o metrics.o
 N: 10000000
-5026877
-5136659
-5452783
-5102134
-5109748
-5338137
-5344824
-4937912
-5123287
-5200107
+5379395
+4906575
+5068770
+4906430
+4910180
+5129722
+5356225
+4893658
+5193892
+5224362
 -------------
 rm -rf *.out
 rm -rf *.o
@@ -21,16 +21,16 @@ g++ -c sample_usage.cpp
 g++ -c metrics.cpp
 g++ -o benchmark.out sample_usage.o metrics.o
 N: 1000000
-427304
-427319
-426269
-471165
-502932
-472812
-457106
-429803
-429389
-426799
+430714
+455359
+456399
+430591
+430460
+429340
+430257
+429981
+432220
+448711
 -------------
 rm -rf *.out
 rm -rf *.o
@@ -38,16 +38,16 @@ g++ -c sample_usage.cpp
 g++ -c metrics.cpp
 g++ -o benchmark.out sample_usage.o metrics.o
 N: 100000
-36935
-36410
-36035
-36053
-36391
-35932
-36156
-35944
-35843
-36563
+39170
+38926
+39010
+38773
+38514
+38472
+38416
+38438
+38555
+38522
 -------------
 rm -rf *.out
 rm -rf *.o
@@ -55,16 +55,16 @@ g++ -c sample_usage.cpp
 g++ -c metrics.cpp
 g++ -o benchmark.out sample_usage.o metrics.o
 N: 10000
-3039
-3015
-3012
-3123
-3089
-3004
-3109
-3003
-3112
-2989
+3187
+3234
+3202
+3223
+3184
+3234
+3186
+3227
+3183
+3219
 -------------
 rm -rf *.out
 rm -rf *.o
@@ -72,16 +72,16 @@ g++ -c sample_usage.cpp
 g++ -c metrics.cpp
 g++ -o benchmark.out sample_usage.o metrics.o
 N: 1000
-269
-236
-234
-235
-236
-235
+254
 252
-282
-235
-235
+251
+261
+252
+250
+252
+251
+261
+252
 -------------
 rm -rf *.out
 rm -rf *.o
@@ -90,13 +90,13 @@ g++ -c metrics.cpp
 g++ -o benchmark.out sample_usage.o metrics.o
 N: 100
 22
-21
-22
-21
+20
+20
+20
+20
 23
 21
-39
 20
 20
-22
+20
 -------------
