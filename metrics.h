@@ -35,7 +35,6 @@ unsigned long _rdpmc(unsigned long pmc_id);
 <...code...>
 
 Metrics m;
-initMetrics(m);
 getMetricsStart(m);
 <...
 code snippet to monitor
@@ -46,7 +45,6 @@ getMetricsEnd(m);
 
 ************************************************************/
 
-void initMetrics(Metrics&);
 void getMetricsStart(Metrics&);
 void getMetricsEnd(Metrics&);
 void printMetrics(Metrics&);

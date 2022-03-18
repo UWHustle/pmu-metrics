@@ -26,7 +26,7 @@ apt install cpuid msr-tools
 modprobe msr
 
 # Enable all PMU units by setting IA32_PERF_GLOBAL_CTRL register (0x38f)
-wrmsr -p ${CORE} 0x38f 0x70000000f
+wrmsr -p ${CORE} 0x38f 0x7000000ff
 
 # Enable fixed counters if the flag has been set
 if [ $FIXED_CTRS_ENBL -gt 0 ]
