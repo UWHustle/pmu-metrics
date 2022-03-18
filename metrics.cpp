@@ -87,22 +87,22 @@ void printMetrics(Metrics &m) {
     unsigned long event_id;
     std::string event_name;
     std::cout
-        << left
-        << setw(40)
+        << std::left
+        << std::setw(40)
         << "Performance Event"
-        << left
-        << setw(25)
+        << std::left
+        << std::setw(25)
         << "Count"
         << std::endl;
     for (int i=0; i<m.n; i++) {
         event_id = m.event_ids[i];
         event_name = event_names_map_copy[event_id];
         std::cout
-            << left
-            << setw(40)
+            << std::left
+            << std::setw(40)
             << event_name
-            << left
-            << setw(25)
+            << std::left
+            << std::setw(25)
             << m.metrics[i]
             << std::endl;
     }
