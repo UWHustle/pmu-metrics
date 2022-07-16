@@ -1,6 +1,9 @@
 #include <iostream>
 #include <iomanip>
 #include <cstdlib>
+#include <time.h>
+#include <sys/time.h>
+#include <sys/types.h>
 
 #ifndef _METRICS_H_
 #define _METRICS_H_
@@ -17,6 +20,12 @@
 
 typedef struct Metrics {
 	Metrics();
+
+	/* Measure time elapsed */
+	struct timespec startTime;
+    struct timespec endTime;
+    ulong timeElapsedns;
+
 	int n; // number of metrics being measured
     unsigned long *metrics;
     static unsigned long *pmu_ids;
@@ -28,6 +37,7 @@ typedef struct Metrics {
 ***********************************************************/
 
 unsigned long _rdpmc(unsigned long pmc_id);
+unsigned long getTimeDiff(struct timespec, struct  timespec);
 
 /************************************************************
 * USAGE - To collect metrics for a particular section of code,

@@ -13,6 +13,12 @@ unsigned long _rdpmc(unsigned long pmc_id) {
 #endif
 }
 
+unsigned long getTimeDiff(struct timespec start_time, struct timespec end_time) {
+    return (unsigned long)((end_time.tv_sec - start_time.tv_sec)*1000000000 +
+        double(end_time.tv_nsec - start_time.tv_nsec));
+    return 0;
+}
+
 unsigned long * Metrics::pmu_ids = NULL;
 unsigned long * Metrics::event_ids = NULL;
 
@@ -72,6 +78,7 @@ Metrics::Metrics() {
 }
 
 void getMetricsStart(Metrics &m) {
+    clock_gettime(CLOCK_MONOTONIC, &m.startTime);
     for (int i=0; i<m.n; i++) {
         m.metrics[i] = _rdpmc(m.pmu_ids[i]);
     }
@@ -81,6 +88,8 @@ void getMetricsEnd(Metrics &m) {
     for (int i=0; i<m.n; i++) {
         m.metrics[i] = _rdpmc(m.pmu_ids[i]) - m.metrics[i];
     }
+    clock_gettime(CLOCK_MONOTONIC, &m.endTime);
+    m.timeElapsedns = getTimeDiff(m.startTime, m.endTime);
 }
 
 void printMetrics(Metrics &m) { 
