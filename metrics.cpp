@@ -95,6 +95,10 @@ void getMetricsEnd(Metrics &m) {
 void printMetrics(Metrics &m) { 
     unsigned long event_id;
     std::string event_name;
+    std::cout << "Total time elapsed (ns): "
+        << m.timeElapsedns
+        << std::endl;
+    std::cout << "--" << std::endl;
     std::cout
         << std::left
         << std::setw(40)
